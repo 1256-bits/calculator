@@ -34,11 +34,12 @@ input[value="0"] {
 
 .operations {
     display: grid;
-    grid-template-columns: 4rem;
-    grid-auto-rows: 3.3rem;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(4, 5rem);
+    grid-auto-columns: 4rem;
     gap: inherit;
 }
 
 input[value="="] {
-    grid-row: 5/7;
+    grid-row: 3/5;
 }
