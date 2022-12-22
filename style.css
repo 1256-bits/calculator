@@ -29,7 +29,12 @@ input[value="0"] {
 
 .screen {
     border: solid black 2px;
+    border-radius: 10rem;
+    padding: 1rem;
     grid-column: 1/2;
+    max-width: 23rem;
+    min-height: 1rem;
+
 }
 
 .operations {
