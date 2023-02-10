@@ -45,6 +45,12 @@ input[value="0"] {
     gap: inherit;
 }
 
+.operands {
+    display: grid;
+    grid-row: 1/5;
+    gap: inherit;
+}
+
 input[value="="] {
     grid-row: 3/5;
 }
