@@ -7,22 +7,30 @@ function evaluate(expr) {
     if (expr.match(/-/))
         return expr.split("-").map(el => evaluate(el)).reduce((total, num) => total - num);
 
-    const operators = expr.split(/[*/]/);
-    const operands = expr.match(/[/*]/g);
+    const operators = expr.split(/[^0-9]/);
+    const operands = expr.match(/[^0-9]/g);
     let total = operators.shift();
 
     for (let i of operators) {
-        switch (operands.shift()) {
+        const operand = operands.shift();
+        switch (operand) {
             case "*":
                 total *= i;
                 break;
             case "/":
                 total /= i;
                 break;
+            default:
+                throw (`Invalid operand: ${operand}`);
         }
     }
 
     return total;
 }
 
-console.log(evaluate("2+2*2"));
+// try {
+//     console.log(evaluate("2+2*2"));
+// }
+// catch {
+//     console.log("Crash with no survivors");
+// }
