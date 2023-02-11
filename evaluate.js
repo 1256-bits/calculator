@@ -27,10 +27,3 @@ function evaluate(expr) {
 
     return total;
 }
-
-// try {
-//     console.log(evaluate("2.2*2"));
-// }
-// catch {
-//     console.log("Crash with no survivors");
-// }

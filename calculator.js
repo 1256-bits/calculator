@@ -6,21 +6,21 @@ const clearKey = document.querySelector("#clear");
 const evalKey = document.querySelector("#eval");
 const operands = document.querySelectorAll(".operands input");
 
-/*
-    TODO:
-    1) Working operands
-    2) Can't add more than one "." per number
-    3) "." adds 0 if used in the beginning
-    4) "=" calls evaluate
-*/
-
 numKeys.forEach(key => key.addEventListener("click", fillScreen));
 bspaceKey.addEventListener("click", backspace);
 clearKey.addEventListener("click", clearScreen);
 operands.forEach(key => key.addEventListener("click", fillScreen));
 
 evalKey.addEventListener("click", () => {
-    screen.innerText = evaluate(screen.innerText).toFixed(3);
+    const evalMe = screen.innerText.replaceAll(/[÷×]/g,(match) => {
+        switch (match) {
+            case "×":
+                return "*";
+            case "÷":
+                return "/";
+        }
+    });
+    screen.innerText = +evaluate(evalMe).toFixed(3);
 });
 
 function fillScreen(e) {
