@@ -7,8 +7,8 @@ function evaluate(expr) {
     if (expr.match(/-/))
         return expr.split("-").map(el => evaluate(el)).reduce((total, num) => total - num);
 
-    const operators = expr.split(/[^0-9]/);
-    const operands = expr.match(/[^0-9]/g);
+    const operators = expr.split(/[^0-9\.]/);
+    const operands = expr.match(/[^0-9\.]/g);
     let total = operators.shift();
 
     for (let i of operators) {
@@ -29,7 +29,7 @@ function evaluate(expr) {
 }
 
 // try {
-//     console.log(evaluate("2+2*2"));
+//     console.log(evaluate("2.2*2"));
 // }
 // catch {
 //     console.log("Crash with no survivors");
