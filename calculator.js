@@ -9,7 +9,7 @@ const operands = document.querySelectorAll(".operands input");
 numKeys.forEach(key => key.addEventListener("click", fillScreen));
 bspaceKey.addEventListener("click", backspace);
 clearKey.addEventListener("click", clearScreen);
-operands.forEach(key => key.addEventListener("click", fillScreen));
+operands.forEach(key => key.addEventListener("click", insertOperand));
 
 evalKey.addEventListener("click", () => {
     const evalMe = screen.innerText.replaceAll(/[÷×]/g,(match) => {
@@ -42,4 +42,13 @@ function clearScreen() {
     screen.innerText = "";
 }
 
+function insertOperand(e) {
+    const lastChar = screen.innerText.slice(-1);
+    if (lastChar === "" && e.target.value !== "-")
+        return;
+    if (lastChar.match(/[-÷×\.\+]/))
+        screen.innerText = screen.innerText.slice(0,-1) + e.target.value;
+    else
+        screen.innerText += e.target.value;
+}
 
