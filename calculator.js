@@ -27,6 +27,10 @@ function fillScreen(e) {
     currentNum = screen.innerText.split(/[\/\*\+-]/).pop();
     if (e.target.value === "." && currentNum.match(/\./))
         return;
+    if (e.target.value === "." && currentNum === "") {
+        screen.innerText += "0.";
+        return;
+    }
     screen.innerText += e.target.value;
 }
 
