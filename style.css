@@ -5,6 +5,7 @@ html {
 body {
     font-size: 1.6rem;
     margin: 0;
+    display: flex;
 }
 
 .calculator {
@@ -12,13 +13,16 @@ body {
     flex-direction: column;
     margin: auto;
     width: fit-content;
-    gap: 0.5rem;
+    gap: 1rem;
     font-size: 4rem;
+    background-color: rgb(66, 78, 61);
+    padding: 4rem 2rem 8rem;
+    border-radius: 2rem;
 }
 
 .keyboard {
     display: flex;
-    gap: inherit;
+    gap: 0.5rem;
 }
 
 .numpad {
@@ -37,10 +41,11 @@ input[value="0"] {
     border-radius: 1rem;
     padding: 0 1rem 0 1rem;
     grid-column: 2;
-    max-width: 45.7rem;
+    max-width: 45.6rem;
     min-height: 5.5rem;
     overflow-wrap: break-word;
     font-size: inherit;
+    background-color: silver;
 }
 
 .operations {
@@ -62,5 +67,20 @@ input[value="="] {
 }
 
 input {
+    all: unset;
+    text-align: center;
     font-size: inherit;
+    border-radius: 3rem;
+    background-color: rgb(34, 34, 34);
+    color: white;
+}
+
+
+input:hover {
+    background-color: rgb(66, 66, 66);
+
+}
+
+input:active {
+    background-color: rgb(52, 52, 160);
 }
