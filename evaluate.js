@@ -27,5 +27,3 @@ function evaluate(expr) {
 
     return total;
 }
-
-console.log(+evaluate(6*-2));

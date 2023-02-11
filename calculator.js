@@ -5,6 +5,7 @@ const bspaceKey = document.querySelector("#backspace");
 const clearKey = document.querySelector("#clear");
 const evalKey = document.querySelector("#eval");
 const operands = document.querySelectorAll(".operands input");
+let errorState = false;
 
 numKeys.forEach(key => key.addEventListener("click", fillScreen));
 bspaceKey.addEventListener("click", backspace);
@@ -14,6 +15,10 @@ operands.forEach(key => key.addEventListener("click", insertOperand));
 evalKey.addEventListener("click", submit);
 
 function fillScreen(e) {
+    if (errorState) {
+        screen.innerText = "";
+        errorState = false;
+    }
     currentNum = screen.innerText.split(/[\/\*\+-]/).pop();
     if (e.target.value === "." && currentNum.match(/\./))
         return;
@@ -33,6 +38,10 @@ function clearScreen() {
 }
 
 function insertOperand(e) {
+    if (errorState) {
+        screen.innerText = "";
+        errorState = false;
+    }
     const lastChar = screen.innerText.slice(-1);
     if (lastChar === "" && e.target.value !== "-")
         return;
@@ -60,5 +69,11 @@ function submit() {
                 return "/";
         }
     });
-    screen.innerText = +evaluate(evalMe).toFixed(3);
+    const result = +evaluate(evalMe).toFixed(3);
+    if (result === Infinity) {
+        screen.innerText = "Error: division by zero";
+        errorState = true;
+    }
+    else
+        screen.innerText = result;
 }
