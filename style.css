@@ -4,11 +4,15 @@ html {
 
 body {
     font-size: 1.6rem;
+    margin: 0;
 }
 
 .calculator {
     display: flex;
     flex-direction: column;
+    margin: auto;
+    width: fit-content;
+    gap: 1px;
 }
 
 .keyboard {
