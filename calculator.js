@@ -46,7 +46,7 @@ function insertOperand(e) {
     const lastChar = screen.innerText.slice(-1);
     if (lastChar === "" && e.target.value !== "-")
         return;
-    if (lastChar.match(/[-÷×\.\+]/))
+    if (lastChar.match(/[-÷×\.\+]/) && e.target.value !== "-")
         screen.innerText = screen.innerText.slice(0,-1) + e.target.value;
     else
         screen.innerText += e.target.value;
