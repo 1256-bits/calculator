@@ -11,17 +11,7 @@ bspaceKey.addEventListener("click", backspace);
 clearKey.addEventListener("click", clearScreen);
 operands.forEach(key => key.addEventListener("click", insertOperand));
 
-evalKey.addEventListener("click", () => {
-    const evalMe = screen.innerText.replaceAll(/[÷×]/g,(match) => {
-        switch (match) {
-            case "×":
-                return "*";
-            case "÷":
-                return "/";
-        }
-    });
-    screen.innerText = +evaluate(evalMe).toFixed(3);
-});
+evalKey.addEventListener("click", submit);
 
 function fillScreen(e) {
     currentNum = screen.innerText.split(/[\/\*\+-]/).pop();
@@ -48,9 +38,27 @@ function insertOperand(e) {
         return;
     if (lastChar === "-" && e.target.value === "-")
         return;
-    if (lastChar.match(/[-÷×\.\+]/) && e.target.value !== "-")
-        screen.innerText = screen.innerText.slice(0,-1) + e.target.value;
+    if (lastChar.match(/[-÷×\.\+]/) && e.target.value !== "-") {
+        screen.innerText = screen.innerText.slice(0, -1) + e.target.value;
+        return;
+    }
+    else if (screen.innerText.match(/[-÷×\.\+]/)) {
+        submit();
+        screen.innerText += e.target.value;
+        return;
+    }
     else
         screen.innerText += e.target.value;
 }
 
+function submit() {
+    const evalMe = screen.innerText.replaceAll(/[÷×]/g, (match) => {
+        switch (match) {
+            case "×":
+                return "*";
+            case "÷":
+                return "/";
+        }
+    });
+    screen.innerText = +evaluate(evalMe).toFixed(3);
+}
