@@ -4,6 +4,7 @@ const numKeys = document.querySelectorAll(".numpad input");
 const bspaceKey = document.querySelector("#backspace");
 const clearKey = document.querySelector("#clear");
 const evalKey = document.querySelector("#eval");
+const operands = document.querySelectorAll(".operands input");
 
 /*
     TODO:
@@ -16,11 +17,16 @@ const evalKey = document.querySelector("#eval");
 numKeys.forEach(key => key.addEventListener("click", fillScreen));
 bspaceKey.addEventListener("click", backspace);
 clearKey.addEventListener("click", clearScreen);
+operands.forEach(key => key.addEventListener("click", fillScreen));
+
 evalKey.addEventListener("click", () => {
     screen.innerText = evaluate(screen.innerText);
 });
 
 function fillScreen(e) {
+    currentNum = screen.innerText.split(/[\/\*\+-]/).pop();
+    if (e.target.value === "." && currentNum.match(/\./))
+        return;
     screen.innerText += e.target.value;
 }
 
