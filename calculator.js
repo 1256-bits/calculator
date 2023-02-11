@@ -20,7 +20,7 @@ clearKey.addEventListener("click", clearScreen);
 operands.forEach(key => key.addEventListener("click", fillScreen));
 
 evalKey.addEventListener("click", () => {
-    screen.innerText = evaluate(screen.innerText);
+    screen.innerText = evaluate(screen.innerText).toFixed(3);
 });
 
 function fillScreen(e) {
