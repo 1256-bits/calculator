@@ -20,14 +20,17 @@ function fillScreen(e) {
         screen.innerText = "";
         errorState = false;
     }
+
+    const value = getEventValue(e);
+
     currentNum = screen.innerText.split(/[\/\*\+-]/).pop();
-    if (e.target.value === "." && currentNum.match(/\./))
+    if (value === "." && currentNum.match(/\./))
         return;
-    if (e.target.value === "." && currentNum === "") {
+    if (value === "." && currentNum === "") {
         screen.innerText += "0.";
         return;
     }
-    screen.innerText += e.target.value;
+    screen.innerText += value;
 }
 
 function backspace() {
@@ -43,22 +46,25 @@ function insertOperand(e) {
         screen.innerText = "";
         errorState = false;
     }
+    
+    const value = getEventValue(e);
+
     const lastChar = screen.innerText.slice(-1);
-    if (lastChar === "" && e.target.value !== "-")
+    if (lastChar === "" && value !== "-")
         return;
-    if (lastChar === "-" && e.target.value === "-")
+    if (lastChar === "-" && value === "-")
         return;
-    if (lastChar.match(/[-÷×\.\+]/) && e.target.value !== "-") {
-        screen.innerText = screen.innerText.slice(0, -1) + e.target.value;
+    if (lastChar.match(/[-÷×\.\+]/) && value !== "-") {
+        screen.innerText = screen.innerText.slice(0, -1) + value;
         return;
     }
     else if (screen.innerText.match(/[-÷×\.\+]/)) {
         submit();
-        screen.innerText += e.target.value;
+        screen.innerText += value;
         return;
     }
     else
-        screen.innerText += e.target.value;
+        screen.innerText += value;
 }
 
 function submit() {
@@ -80,11 +86,23 @@ function submit() {
 }
 
 function pressKey(e) {
-    if(e.key.match(/[0-9]/))
-        fillScreen(e.key);
-    else if(e.key.match(/[-*+/]/))
-        insertOperand(e.key);
-    else if(e.key === "=")
+    console.log(e)
+    if (e.key.match(/[0-9]/))
+        fillScreen(e);
+    else if (e.key.match(/[-*+/]/))
+        insertOperand(e);
+    else if (["=","Enter","NumpadEnter"].includes(e.key))
         submit();
     console.log("DDD")
+}
+
+function getEventValue(e) {
+    if (e.type === "click")
+        return e.target.value;
+    else if (e.type === "keydown")
+        return e.key;
+    else {
+        console.error("Unknown event");
+        return "";
+    }
 }
