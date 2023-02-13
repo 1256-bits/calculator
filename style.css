@@ -9,11 +9,8 @@ body {
 }
 
 .calculator {
-    display: flex;
-    flex-direction: column;
     margin: auto;
     width: fit-content;
-    gap: 1rem;
     font-size: 4rem;
     background-color: rgb(66, 78, 61);
     padding: 4rem 2rem 8rem;
@@ -40,7 +37,7 @@ input[value="0"] {
     border: solid black 2px;
     border-radius: 1rem;
     padding: 0 1rem 0 1rem;
-    grid-column: 2;
+    margin-bottom: 1rem;
     max-width: 45.6rem;
     min-height: 5.5rem;
     overflow-wrap: break-word;
@@ -66,7 +63,7 @@ input[value="0"] {
     gap: inherit;
 }
 
-input[value="="] {
+#eval {
     grid-row: 3/5;
 }
 
