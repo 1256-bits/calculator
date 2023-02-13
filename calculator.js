@@ -3,13 +3,13 @@ const numKeys = document.querySelectorAll(".numpad input");
 const bspaceKey = document.querySelector("#backspace");
 const clearKey = document.querySelector("#clear");
 const evalKey = document.querySelector("#eval");
-const operands = document.querySelectorAll(".operands input");
+const operators = document.querySelectorAll(".operators input");
 let errorState = false;
 
 numKeys.forEach(key => key.addEventListener("click", fillScreen));
 bspaceKey.addEventListener("click", backspace);
 clearKey.addEventListener("click", clearScreen);
-operands.forEach(key => key.addEventListener("click", insertOperand));
+operators.forEach(key => key.addEventListener("click", insertOperator));
 document.addEventListener("keydown", pressKey);
 
 evalKey.addEventListener("click", submit);
@@ -40,7 +40,7 @@ function clearScreen() {
     screen.innerText = "";
 }
 
-function insertOperand(e) {
+function insertOperator(e) {
     if (errorState) {
         screen.innerText = "";
         errorState = false;
@@ -88,7 +88,7 @@ function pressKey(e) {
     if (e.key.match(/[0-9]/))
         fillScreen(e);
     else if (e.key.match(/[-*+/]/))
-        insertOperand(e);
+        insertOperator(e);
     else if (["=","Enter","NumpadEnter"].includes(e.key))
         submit();
     else if (e.key === "Escape")

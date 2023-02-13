@@ -57,7 +57,7 @@ input[value="0"] {
     color: rgb(221, 67, 67);
 }
 
-.operands {
+.operators {
     display: grid;
     grid-row: 1/5;
     gap: inherit;
