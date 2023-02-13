@@ -1,6 +1,5 @@
 const screen = document.querySelector(".screen");
 const numKeys = document.querySelectorAll(".numpad input");
-// const operators = document.querySelectorAll("")
 const bspaceKey = document.querySelector("#backspace");
 const clearKey = document.querySelector("#clear");
 const evalKey = document.querySelector("#eval");
@@ -86,14 +85,14 @@ function submit() {
 }
 
 function pressKey(e) {
-    console.log(e)
     if (e.key.match(/[0-9]/))
         fillScreen(e);
     else if (e.key.match(/[-*+/]/))
         insertOperand(e);
     else if (["=","Enter","NumpadEnter"].includes(e.key))
         submit();
-    console.log("DDD")
+    else if (e.key === "Escape")
+        clearScreen();
 }
 
 function getEventValue(e) {
