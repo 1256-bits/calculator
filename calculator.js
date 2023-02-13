@@ -11,6 +11,7 @@ numKeys.forEach(key => key.addEventListener("click", fillScreen));
 bspaceKey.addEventListener("click", backspace);
 clearKey.addEventListener("click", clearScreen);
 operands.forEach(key => key.addEventListener("click", insertOperand));
+document.addEventListener("keydown", pressKey);
 
 evalKey.addEventListener("click", submit);
 
@@ -76,4 +77,14 @@ function submit() {
     }
     else
         screen.innerText = result;
+}
+
+function pressKey(e) {
+    if(e.key.match(/[0-9]/))
+        fillScreen(e.key);
+    else if(e.key.match(/[-*+/]/))
+        insertOperand(e.key);
+    else if(e.key === "=")
+        submit();
+    console.log("DDD")
 }
